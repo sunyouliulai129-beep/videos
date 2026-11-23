@@ -83,7 +83,15 @@
   - どのブランチを使い終わったかは `log/uploads.csv` で判断する。
 - `moshimo-stock` ブランチは `moshimo-shorts` の重複なので使わない。
 
-## 5. 報告
+## 5. TikTok用に渡す
+ユーザーは、その日のショート2本をスマホから TikTok に手で上げる。
+- SendUserFile（status: proactive）で `short1.mp4` と `short2.mp4` を送る。キャプションは「TikTok用」。
+- 2本それぞれについて、TikTok にそのまま貼れる投稿文を SendUserMessage で送る。
+  - 1〜2行の説明＋ハッシュタグ4〜6個（例：#雑学 #もしも #fyp）
+  - 切り抜きショートは「続きはYouTubeで（チャンネル名 YNSSNSK）」と添える
+- TikTok への投稿そのものはしない（ユーザーが手でやる）。
+
+## 6. 報告
 最後にユーザーへ短く日本語で報告する。書くことは次の4つ。
 - 今日のジャンル
 - 3本のタイトル
