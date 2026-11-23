@@ -102,12 +102,12 @@ SUIRI = [
 THINK_S = 7.0
 def suiri(d):
     bg = make_bg((28, 30, 70), (6, 7, 20)); ic = emoji(d.get('icon', '❓'), 300)
-    T_HOOK = 2.6
+    T_HOOK = 0.0 if d.get('no_hook') else 2.6
     qt = []; t = T_HOOK + 0.4
     for s in d['q']: qt.append(t); t += 0.6 + len(s)*0.10
     ask_t = t + 0.3; think_t = ask_t + 1.5; ans_t = think_t + THINK_S + 0.3
     exp_t = [ans_t + 1.6 + i*2.2 for i in range(len(d['exp']))]
-    end_t = exp_t[-1] + 2.8; total = end_t + 3.2
+    end_t = exp_t[-1] + 2.8; total = end_t + (0.0 if d.get('no_end') else 3.2)
     def fr(t):
         b = bg.copy(); dd = ImageDraw.Draw(b)
         if t < T_HOOK:
@@ -172,12 +172,12 @@ ZATSU = [
              ('🏔️', 'エベレストは今も', '少しずつ高くなっている', '大陸をのせたプレートが押し合っているから。'),
              ('🚀', '宇宙に行くと', '身長が少し伸びる', '重力がなく、背骨の間がのびるため。')]),
 ]
-FACT = 6.6
 def zatsu(d):
+    FACT = float(d.get('fact_sec', 6.6)); NF = len(d['facts'])
     bg = make_bg(d['color'][0], d['color'][1])
     icons = [emoji(f[0], 340) for f in d['facts']]
-    T_HOOK = 2.6; t0s = [T_HOOK + i*FACT for i in range(5)]
-    end_t = T_HOOK + 5*FACT; total = end_t + 3.5
+    T_HOOK = 2.6; t0s = [T_HOOK + i*FACT for i in range(NF)]
+    end_t = T_HOOK + NF*FACT; total = end_t + 3.5
     def fr(t):
         b = bg.copy(); dd = ImageDraw.Draw(b)
         if t < T_HOOK:
@@ -190,12 +190,12 @@ def zatsu(d):
             put(b, (W//2, 920), 'コメントで教えてね！', 72, alpha=fade(t, end_t + 0.5))
             put(b, (W//2, 1080), d.get('end3', 'チャンネル登録で毎日雑学'), 56, fill=GRAYT, alpha=fade(t, end_t + 1.0))
             return b
-        i = min(int((t - T_HOOK)//FACT), 4); tt = t - t0s[i]; f = d['facts'][i]
+        i = min(int((t - T_HOOK)//FACT), NF - 1); tt = t - t0s[i]; f = d['facts'][i]
         dd.rectangle([0, 0, W, 170], fill=(0, 0, 0, 120));
         put(b, (W//2, 88), d['hook'][0] + d['hook'][1], 60, fill=WHITE)
         # progress dots
-        for k in range(5):
-            x = W//2 - 160 + k*80
+        for k in range(NF):
+            x = W//2 - (NF - 1)*40 + k*80
             dd.ellipse([x-16, 220-16, x+16, 220+16], fill=YEL if k <= i else (90, 90, 110))
         put(b, (W//2, 380), f'その{i+1}', 90, fill=GOLD, scale=pop(tt, 0.0))
         ic = icons[i]; s = pop(tt, 0.1, 0.3)
