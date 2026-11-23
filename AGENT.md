@@ -70,7 +70,10 @@
   - 上げられなかった動画は、まだ存在しない日付のうちいちばん近い `stock-日付` ブランチに移して、その日に回す。すでにある stock ブランチは上書きしない。
 - 成功したら `log/uploads.csv` に1行ずつ追記して、main に push する。
   - 列：`date,slot,publish_at,genre,title,video_id,url`
-- 使い終わった `day-*` / `stock-*` ブランチは削除する：`git push origin --delete <branch>`
+- 使い終わった `day-*` / `stock-*` ブランチは削除を試す：`git push origin --delete <branch>`
+  - この環境ではブランチ削除が 403 で断られることがある。その場合はそのままにして先へ進む（エラーとして報告しなくてよい）。
+  - どのブランチを使い終わったかは `log/uploads.csv` で判断する。
+- `moshimo-stock` ブランチは `moshimo-shorts` の重複なので使わない。
 
 ## 5. 報告
 最後にユーザーへ短く日本語で報告する。書くことは次の4つ。
