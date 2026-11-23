@@ -117,9 +117,9 @@ def suiri(d):
             b.alpha_composite(ic, (W//2 - ic.width//2, 1150))
             return b
         if t >= end_t:
-            put(b, (W//2, 700), d.get('end1', 'もっと解きたい人は'), 70, alpha=fade(t, end_t))
-            put(b, (W//2, 840), d.get('end2', 'チャンネルのロング動画で！'), 76, fill=YEL, scale=pop(t, end_t + 0.3))
-            put(b, (W//2, 1050), 'フォローしてね', 60, fill=GRAYT, alpha=fade(t, end_t + 0.8))
+            put(b, (W//2, 700), d.get('end1', 'もっと解きたい人は'), 84, fill=YEL, stroke=6, scale=pop(t, end_t))
+            put(b, (W//2, 850), d.get('end2', 'チャンネルのロング動画で！'), 70, alpha=fade(t, end_t + 0.4))
+            put(b, (W//2, 1020), d.get('end3', 'チャンネル登録してね'), 56, fill=GRAYT, alpha=fade(t, end_t + 0.8))
             return b
         dd.rectangle([0, 0, W, 170], fill=(10, 12, 26, 255)); dd.line([(0, 170), (W, 170)], fill=GOLD, width=5)
         put(b, (W//2, 88), d['hook'][0] + d['hook'][1], 64, fill=YEL)
@@ -188,7 +188,7 @@ def zatsu(d):
         if t >= end_t:
             put(b, (W//2, 760), 'いくつ知ってた？', 100, fill=YEL, stroke=6, scale=pop(t, end_t))
             put(b, (W//2, 920), 'コメントで教えてね！', 72, alpha=fade(t, end_t + 0.5))
-            put(b, (W//2, 1080), 'フォローで毎日雑学', 56, fill=GRAYT, alpha=fade(t, end_t + 1.0))
+            put(b, (W//2, 1080), d.get('end3', 'チャンネル登録で毎日雑学'), 56, fill=GRAYT, alpha=fade(t, end_t + 1.0))
             return b
         i = min(int((t - T_HOOK)//FACT), 4); tt = t - t0s[i]; f = d['facts'][i]
         dd.rectangle([0, 0, W, 170], fill=(0, 0, 0, 120));
