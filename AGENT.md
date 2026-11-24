@@ -117,14 +117,15 @@
   `https://raw.githubusercontent.com/sunyouliulai129-beep/videos/moshimo-shorts/<file>`
 - タイトル・説明・タグは main の `moshimo/meta.json` を使う（`order` の順に使う）。
 - まだ使っていないものは、`log/uploads.csv` の title と見比べて判断する（使ったものは title が載っている）。
+- `kami_moshimo.mp4`（紙を折る）は、本人がすでに自分でアップロード済み。**使わない**（meta.json の `already_uploaded`）。
 - 予約設定（private + publish_at、category_id "24"、made_for_kids false）と公開時間のルールは、ほかのショートと同じ。
-- 6本すべて使い終わったら `git push origin --delete moshimo-shorts` で削除する。
+- `order` の5本すべて使い終わったら `git push origin --delete moshimo-shorts` で削除する。
 - **そのあとも short2 は「もしも系」を新しく作る**（チャンネルの看板シリーズのため）。
   - `gen/moshimo_kit.py` を使い、`content/DAY/moshimo.py` にそのテーマ専用のシーンを描くスクリプトを書く。
   - 見本は `gen/examples/moshimo_hair.py`。スタイルのきまりは moshimo_kit.py の先頭に書いてある。
   - 数字はすべて計算で確かめ、科学的な事実は確かなものだけにする。
   - 過去のテーマ（meta.json と content/）とかぶらないようにする。
-- 予定：11/25 紙 → 11/26 アリ → 11/27 地球 → 11/28 月 → 11/29 巨人 → 11/30 お小遣い
+- 予定：11/25 アリ → 11/26 地球 → 11/27 月 → 11/28 巨人 → 11/29 お小遣い（紙はアップ済みなので除外）
 
 ## 作れる形式
 ### ロング（`gen/render_long.py`）：20問のクイズ形式
